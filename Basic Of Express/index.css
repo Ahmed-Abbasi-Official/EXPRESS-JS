@@ -1,0 +1,6 @@
+/* Increase the font size of comments */
+.token.comment {
+    font-size: 5rem !important; /* Adjust this size as per your needs */
+    color: #6a737d; /* Optional: change the comment color if desired */
+  }
+  
