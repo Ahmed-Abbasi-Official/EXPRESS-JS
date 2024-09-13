@@ -74,7 +74,12 @@ app.get("/profile/:username", (req, res) => {
 app.set("view engine","ejs")
 
 app.get('/ahmed',(req,res)=>{
-  res.render("index")           // isky andar views folder ki os file ka nam likhna hy jisko rendar krwana hy or .ejs nhy lagana .
+  res.render("Home")           // isky andar views folder ki os file ka nam likhna hy jisko rendar krwana hy or .ejs nhy lagana .
+  
+})
+
+app.get('/ahmed/contact',(req,res)=>{
+  res.render("contact")           // isky andar views folder ki os file ka nam likhna hy jisko rendar krwana hy or .ejs nhy lagana .
   
 })
 
