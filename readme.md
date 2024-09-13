@@ -37,6 +37,7 @@ Express.js is a lightweight framework for building web applications and APIs in 
 
 ## 6️⃣ **Template Engines** 🖼️  
 - Template engines like **EJS** and **Pug** allow us to generate dynamic HTML by mixing HTML and JavaScript.
+- HTML don't have SuperPower to do calculation like (1+2) and EJS has the power to do dynamically HTML like calculation and name changing dynamically.
 
 ---
 
