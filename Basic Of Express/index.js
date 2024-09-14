@@ -73,15 +73,39 @@ app.get("/profile/:username", (req, res) => {
 
 app.set("view engine","ejs")
 
+// For Ahmed Route
+
 app.get('/ahmed',(req,res)=>{
-  res.render("Home")           // isky andar views folder ki os file ka nam likhna hy jisko rendar krwana hy or .ejs nhy lagana .
+  res.render("Home",{name:"Ahmed Abbasi",
+    buttonName:"See my Resume"
+  })           // isky andar views folder ki os file ka nam likhna hy jisko rendar krwana hy or .ejs nhy lagana .
+              // also send dynamicallyy data to ejs then ejs convert it into HTML .
   
 })
 
+// For Ahmed/Contact Route
+
 app.get('/ahmed/contact',(req,res)=>{
-  res.render("contact")           // isky andar views folder ki os file ka nam likhna hy jisko rendar krwana hy or .ejs nhy lagana .
+  res.render("contact" ,{name:"Ahmed Abbasi"} )           
+
+              // isky andar views folder ki os file ka nam likhna hy jisko rendar krwana hy or .ejs nhy lagana .
+  
+              // also send dynamicallyy data to ejs then ejs convert it into HTML .
   
 })
+
+
+
+                                      // =========================
+                                      //     Starting the Server
+                                      // =========================
+
+
+
+app.use(express.static('./public'))
+
+// static file ko serve krna like  CSS and JS and IMAGES
+// agar views k andar css ko alag file me dalna hy tu os ko idr daly gy.
 
 
                                       // =========================
