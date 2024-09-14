@@ -97,15 +97,37 @@ app.get('/ahmed/contact',(req,res)=>{
 
 
                                       // =========================
-                                      //     Starting the Server
+                                      //     Static Files
                                       // =========================
 
 
+
+app.get('/error',(req,res,next)=>{
+  throw Error("Something went Wrong");
+})
 
 app.use(express.static('./public'))
 
 // static file ko serve krna like  CSS and JS and IMAGES
 // agar views k andar css ko alag file me dalna hy tu os ko idr daly gy.
+
+
+
+
+                                      // =========================
+                                      //     error handling
+                                      // =========================
+
+
+
+app.use(function errorHandler (err, req, res, next) {
+  if (res.headersSent) {
+  return next(err)
+  }
+  res.status(500)
+  res.render('error', { error: err })
+  })
+
 
 
                                       // =========================
