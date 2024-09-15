@@ -11,6 +11,8 @@ router.get("/", function (req, res, next) {
 //   CRUD OPERATION
 // ====================
 
+// Create
+
 router.get("/create", async (req, res) => {
   try {
     const createdUser = await userModel.create({
@@ -24,6 +26,25 @@ router.get("/create", async (req, res) => {
   } catch (error) {
     console.error("Error creating user:", error);
     res.status(500).send("An error occurred while creating the user.");
+  }
+});
+
+// Find
+
+router.get("/allUsers", async (req, res) => {
+  try {
+    // const allUsers=await userModel.find()
+    const findUser = await userModel.findOne({ name: "Ahmed Abbasi" }); // return only one document having userName Ahmed Abbasi.
+    if (findUser) {
+      return res.send(findUser);
+    } else {
+      return res.send("No User");
+    }
+    // res.send(allUsers)  // Return an array which have all documents by find method
+    // return only one document having userName Ahmed Abbasi.
+  } catch (error) {
+    console.log("Error in Find Users :", error);
+    res.status(500).send("An Error occur in Find Users : ");
   }
 });
 
