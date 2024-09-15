@@ -85,4 +85,26 @@ router.get("/delete",async(req,res)=>{
 
 
 
+// ====================
+//   Session
+// ====================
+
+
+
+// create Session
+
+router.get('/session',(req,res)=>{
+  req.session.theme="Dark";
+  res.send("Ban Gya")
+})
+
+// Check Session
+
+router.get('/checkSession',(req,res)=>{
+  
+  res.send(req.session)
+})
+
+
+
 module.exports = router;
