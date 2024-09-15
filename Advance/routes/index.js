@@ -7,11 +7,15 @@ router.get("/", function (req, res, next) {
   res.render("index");
 });
 
-// ====================
-//   CRUD OPERATION
-// ====================
+                                              // ====================
+                                              //   CRUD OPERATION
+                                              // ====================
 
-// Create
+
+
+// ====================
+//   Create
+// ====================
 
 router.get("/create", async (req, res) => {
   try {
@@ -29,7 +33,15 @@ router.get("/create", async (req, res) => {
   }
 });
 
-// Find
+
+
+
+// ====================
+//   READ
+// ====================
+
+
+
 
 router.get("/allUsers", async (req, res) => {
   try {
@@ -47,5 +59,30 @@ router.get("/allUsers", async (req, res) => {
     res.status(500).send("An Error occur in Find Users : ");
   }
 });
+
+
+
+// ====================
+//   DELETE
+// ====================
+
+
+
+router.get("/delete",async(req,res)=>{
+  try {
+    const deleteUser=await userModel.findOneAndDelete({
+      name:"Ahmed Abbasi",
+
+    })
+    res.send(deleteUser)
+  } catch (error) {
+    console.log("Error in Deleting Users :", error);
+    res.status(500).send("Error in Deleting : ")
+
+  }
+})
+
+
+
 
 module.exports = router;
