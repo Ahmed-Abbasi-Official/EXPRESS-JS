@@ -85,24 +85,104 @@ router.get("/delete",async(req,res)=>{
 
 
 
-// ====================
-//   Session
-// ====================
+                                          // ====================
+                                          //   Session
+                                          // ====================
 
+
+// if server was restart session was automatically deleted .
 
 
 // create Session
 
-router.get('/session',(req,res)=>{
-  req.session.theme="Dark";
-  res.send("Ban Gya")
-})
+router.get('/session', async (req, res) => {
+  try {
+    req.session.theme = "Dark";
+    res.send("Ban Gya");
+  } catch (error) {
+    res.status(500).send("Error in setting session");
+    console.error("Error in setting session: ", error);
+  }
+});
 
 // Check Session
 
-router.get('/checkSession',(req,res)=>{
-  
-  res.send(req.session)
+router.get('/checkSession', async (req, res) => {
+  try {
+    if(req.session.theme === "Dark") { res.send(req.session.theme)}
+    else{
+       res.send("Light")
+    }
+  } catch (error) {
+    res.status(500).send("Error in checking session");
+    console.error("Error in checking session: ", error);
+  }
+});
+
+// Delete Session
+
+router.get('/deleteSession', async (req, res) => {
+  try {
+    req.session.destroy((error) => {
+      if (error) {
+        console.log("Error in deleting Session : ", error);
+        return res.status(500).send("Error in deleting session");
+      }
+      res.send("Ban Removed");
+    });
+  } catch (error) {
+    res.status(500).send("Error in session handling");
+    console.error("Error in session handling: ", error);
+  }
+});
+
+
+
+
+                                          // ====================
+                                          //   COOKIES
+                                          // ====================
+
+
+
+// CREATE
+
+router.get('/cookie',(req,res)=>{
+  try {
+    res.cookie("name","Ahmed Abbasi");    // Cookie banty hy browser pr is li server pr req nhy kr sakty is li res use krty hy .
+    res.send("Ban Gy")
+  } catch (error) {
+    res.status(500).send("Error in setting Cookie");
+    console.error("Error in setting Cookie: ", error);
+  }
+})
+
+// READ
+
+router.get('/checkCookie',(req,res)=>{
+  try {
+    res.send(req.cookies.name);
+    // Cookie server pr aty hy is li requst me find krty hy  .
+    res.send("Check hu  gy")
+  } catch (error) {
+    res.status(500).send("Error in checking Cookie");
+    console.error("Error in checking Cookie: ", error);
+  }
+})
+
+// DELETE 
+
+router.get('/deleteCookie',(req,res)=>{
+
+  try {
+    req.session.destroy((error) => {
+      res.clearCookie("name")
+      res.send("Clear hu gy")
+    });
+  } catch (error) {
+    res.status(500).send("Error in Cookie handling");
+    console.error("Error in Cookie handling: ", error);
+  }
 })
 
 
