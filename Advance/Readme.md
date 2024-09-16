@@ -25,5 +25,5 @@ This project demonstrates how to use **Express.js** to perform CRUD operations, 
 ## Project Setup 🚀
 
 1. **Install the required dependencies:**
-   ```bash
+   ```npm
    npm install express mongoose cookie-parser express-session

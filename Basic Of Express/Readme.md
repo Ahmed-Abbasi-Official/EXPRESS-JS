@@ -21,5 +21,5 @@ This project is an Express.js web application that showcases the use of:
 ## Project Setup 🚀
 
 1. **Clone the repository:**
-   ```bash
+   ```npm
    git clone https://github.com/your-repository/express-app.git
