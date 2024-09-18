@@ -47,13 +47,13 @@ router.get("/check", (req, res) => {
 router.get("/createData", async (req, res) => {
   try {
     const data = await userModel.create({
-      userName: "harshita",
+      userName: "nani",
       nickName: "Abbasi",
       name: "Hasnain Abbasi",
       discription: "Hi ! I am Ahmed Abbasi a Student Developer .",
       catogaries: [
         "HTML5",
-        "CSS",
+        "fashion",
         "JS",
         "BootStrap",
         "Tailwind",
@@ -80,5 +80,79 @@ router.get("/findData", async (req, res) => {
     res.status(500).send("Finding Error ");
   }
 });
+
+
+
+                                              // ====================================================
+                                              // how i find the documents where an array fields such 
+                                              // values that i search .
+                                              // ====================================================
+
+
+
+
+router.get('/findDoc',async(req,res)=>{
+  let find = new RegExp('^cSs$','i')
+  const allDoc=await userModel.find({catogaries:{$all:[find,'HTML5']}})
+  res.send(allDoc)
+})
+
+
+
+
+                                              // ====================================================
+                                              // how can i search for documents with a specific date 
+                                              // date range in mongoose ?
+                                              // ====================================================
+
+
+
+router.get('/findDateRange',async(req,res)=>{
+  let date1 = new Date('2024-09-01');
+  let date2 = new Date('2024-10-18');
+
+  let userFind=await userModel.find({
+    dateCreated:{$gte : date1 , $lte:date2} // gte (greater than equal) and lte (less than equal).
+  })
+  res.send(userFind)
+})
+
+
+
+
+                                              // ====================================================
+                                              // how can i filter documents based on the existence of
+                                              // a field in Mongoose ?
+                                              // ====================================================
+
+
+
+
+router.get('/filter',async(req,res)=>{
+  let find = await userModel.find({catogaries:{$exists:true}})
+  res.send(find)
+})
+
+
+
+
+                                              // ====================================================
+                                              // how can i filter documents based on a specific field's
+                                              // length in Mongoose ?
+                                              // ====================================================
+
+
+
+router.get('/filterField',async(req,res)=>{
+  let findUser=await userModel.find({
+    $expr:{
+      $and:[
+        { $gte:[{$strLenCP:'$nickName'},0]},
+        {$lte:[{$strLenCP:'$nickName'},12]}
+      ]
+    }
+  })
+  res.send(findUser);
+})
 
 module.exports = router;
